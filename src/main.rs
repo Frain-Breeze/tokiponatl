@@ -2,9 +2,11 @@ use std::collections::HashMap;
 use std::fs;
 use std::fs::File;
 use std::io::{self, BufRead};
-use std::path::Path;
+use std::env;
 
 fn main() -> Result<(), std::io::Error>{
+
+    let args: Vec<String> = env::args().collect();
 
     let tl_path = "sona/translations/nl/definitions.toml";
     let tl_file = File::open(tl_path)?;
@@ -28,13 +30,15 @@ fn main() -> Result<(), std::io::Error>{
     }
 
 
-    let input_string = "mi olin e sina.";
-    let input_string = "jan pona mi li lon tomo pali. jan jo pi tomo pali li pana e tomo lape tawa mi tu. tenpo pimeja pi ale ala la mi tu li lon tomo ni. lape la ilo kon li pona mute tawa ona. taso mi  sama ala ona. taso mi toki ala ike tawa ona.";
+    //let input_string = "mi olin e sina.";
+    //let input_string = "jan pona mi li lon tomo pali. jan jo pi tomo pali li pana e tomo lape tawa mi tu. tenpo pimeja pi ale ala la mi tu li lon tomo ni. lape la ilo kon li pona mute tawa ona. taso mi  sama ala ona. taso mi toki ala ike tawa ona.";
 
     let directory_path = "sona/words/";
-    let entries = fs::read_dir(directory_path)?;
+    let _entries = fs::read_dir(directory_path)?;
 
-    for word in input_string.split(|c: char| !c.is_alphanumeric()) {
+
+    //for word in input_string.split(|c: char| !c.is_alphanumeric()) {
+    for word in &args[1..] {
         if !word.is_empty() {
             //println!("{}", word);
 
